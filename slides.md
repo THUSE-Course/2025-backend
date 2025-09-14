@@ -42,6 +42,11 @@ hide: false
 ---
 
 ---
+src: ./pages/django.md
+hide: false
+---
+
+---
 layout: center
 ---
 
