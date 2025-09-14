@@ -5,12 +5,12 @@ theme: default
 # like them? see https://unsplash.com/collections/94734566/slidev
 background: https://cover.sli.dev
 # some information about your slides (markdown enabled)
-title: 计算机系《软件工程》小作业讲解
-subtitle: CI/CD
+title: 计算机系《软件工程》课程
+subtitle: 后端
 author: 计算机系《软件工程》助教团队
 info: |
-  Deployment of homework, Software Engineering, CST, Tsinghua Univ.
-  By Ajax <i@aajax.top>, 15/Feb/2025
+  Backend of homework, Software Engineering, CST, Tsinghua Univ.
+  By Ajax <i@aajax.top>, 14/Sep/2025
 # apply unocss classes to the current slide
 class: text-center
 # https://sli.dev/features/drawing
@@ -22,12 +22,12 @@ transition: slide-left
 mdc: true
 ---
 
-# 计算机系《软件工程》小作业讲解
+# 计算机系《软件工程》课程
 
-## CI/CD
+## Git & 前后端分离 & Django
 
 ---
-src: ./pages/deployment.md
+src: ./pages/git.md
 hide: false
 ---
 
