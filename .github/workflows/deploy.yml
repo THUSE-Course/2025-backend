@@ -37,7 +37,7 @@ jobs:
           run_install: true
 
       - name: Build
-        run: pnpm slidev build --base /2025-deploy/
+        run: pnpm slidev build --base /2025-backend/
 
       - uses: actions/configure-pages@v4
 
