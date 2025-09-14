@@ -273,5 +273,5 @@ gitGraph
 - 更详细的教程: https://docs.net9.org/basic/git/
 - 往年的科协暑培: https://summer25.net9.org/basic/linux%26git/Git/ ; https://summer24.net9.org/basic/linux_git/Git/
 - 练习 Git: https://learngitbranching.js.org/?locale=zh_CN
-
+- 实验物理的大数据方法讲义: https://hep.tsinghua.edu.cn/~orv/teaching/physics-data/l0.html
 ---

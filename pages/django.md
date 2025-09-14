@@ -20,9 +20,9 @@
 
 ## 项目与应用
 
-- 项目文件夹是一个 Django 项目的顶层模块，其中含有 settings.py, asgi.py, wsgi.py 三个特殊的文件
+- 项目文件夹是一个 Django 项目的顶层模块, 其中含有 settings.py, asgi.py, wsgi.py 三个特殊的文件
 
-- 一个 Django 项目中可以同时存在多个应用，一个应用是具有完成某个独立功能作用的模块
+- 一个 Django 项目中可以同时存在多个应用, 一个应用是具有完成某个独立功能作用的模块
 
 </div>
 
@@ -49,8 +49,8 @@
 ├── pytest.ini
 ├── README.md
 ├── requirements.txt
-└── utils              # 一些功能函数在这里；也可以放在
-                       # 其他的文件夹下，只要引用路径正确即可
+└── utils              # 一些功能函数在这里; 也可以放在
+                       # 其他的文件夹下, 只要引用路径正确即可
     ├── utils_jwt.py
     ├── utils_request.py
     ├── utils_require.py
@@ -65,9 +65,9 @@
 
 ## 路由
 
-首先，我们来解决后端收到请求时，后端会将请求交给哪个应用的哪个视图函数处理的问题。和这个功能有关的文件主要为项目文件夹和应用文件夹下的 `urls.py`。
+首先, 我们来解决后端收到请求时, 后端会将请求交给哪个应用的哪个视图函数处理的问题. 和这个功能有关的文件主要为项目文件夹和应用文件夹下的 `urls.py`. 
 
-假如我们的后端部署在 `my-backend.com`，我们在访问 <code><span style="color: lightgreen;">my-backend.com/</span><span style="color: orange">board/</span><span style="color: cyan">restart</span></code> 时，后端会首先在项目文件夹下的 `urls.py` 中以 <code><span style="color: orange">board/</span><span style="color: cyan">restart</span></code> 开始搜索。假设其配置为：
+假如我们的后端部署在 `my-backend.com`, 我们在访问 <code><span style="color: lightgreen;">my-backend.com/</span><span style="color: orange">board/</span><span style="color: cyan">restart</span></code> 时, 后端会首先在项目文件夹下的 `urls.py` 中以 <code><span style="color: orange">board/</span><span style="color: cyan">restart</span></code> 开始搜索. 假设其配置为: 
 
 ```python
 urlpatterns = [
@@ -75,7 +75,7 @@ urlpatterns = [
 ]
 ```
 
-我们会**匹配掉**字符串 <code><span style="color: orange">board/</span></code>，然后将剩下的请求 <code><span style="color: cyan">restart</span></code> 交给 `board/urls.py` 处理。假设子应用的 `urls.py` 配置为：
+我们会**匹配掉**字符串 <code><span style="color: orange">board/</span></code>, 然后将剩下的请求 <code><span style="color: cyan">restart</span></code> 交给 `board/urls.py` 处理. 假设子应用的 `urls.py` 配置为: 
 
 ```python
 urlpatterns = [
@@ -83,13 +83,13 @@ urlpatterns = [
 ]
 ```
 
-这时剩余请求 <code><span style="color: cyan">restart</span></code> 匹配到第一条规则后，交由 `board/views.py` 中的 `restart_board` 函数进行处理，即后端会帮助我们调用这个函数，并把请求体（和请求有关的信息，包括请求方法、请求数据等等）作为参数传给这个函数。
+这时剩余请求 <code><span style="color: cyan">restart</span></code> 匹配到第一条规则后, 交由 `board/views.py` 中的 `restart_board` 函数进行处理, 即后端会帮助我们调用这个函数, 并把请求体 (和请求有关的信息, 包括请求方法、请求数据等等) 作为参数传给这个函数. 
 
 ---
 
 ## 模型
 
-- 在 Django 中，模型用于数据库中数据表的结构设计以及数据表的元数据（如主键、外键、索引等）管理。我们使用 Django 提供的 ORM 机制来进行对数据表和数据表列属性的管理。具体来说，我们只需要在 &lt;app>/models.py 中定义一个类继承 `django.db.models.Model` 即可。
+- 在 Django 中, 模型用于数据库中数据表的结构设计以及数据表的元数据 (如主键、外键、索引等) 管理. 我们使用 Django 提供的 ORM 机制来进行对数据表和数据表列属性的管理. 具体来说, 我们只需要在 &lt;app>/models.py 中定义一个类继承 `django.db.models.Model` 即可. 
 
     ```python
     from utils import utils_time
@@ -105,7 +105,7 @@ urlpatterns = [
         created_time = models.FloatField(default=utils_time.get_timestamp)
     ```
 
-- 在你修改完应用的 models.py 之后，你应该使用如下命令去生成修改数据表结构与属性的语句：
+- 在你修改完应用的 models.py 之后, 你应该使用如下命令去生成修改数据表结构与属性的语句: 
     ```bash
     python3 manage.py makemigrations <app_name>
     ```
@@ -118,9 +118,9 @@ urlpatterns = [
 
 ## 视图
 
-视图函数是后端逻辑的主入口，其接受经过路由之后的 HttpRequest 类型的请求作为参数，并返回一个 HttpResponse 类型的对象作为响应。
+视图函数是后端逻辑的主入口, 其接受经过路由之后的 HttpRequest 类型的请求作为参数, 并返回一个 HttpResponse 类型的对象作为响应. 
 
-我们可以在 `<app>/views.py` 中定义一个应用所具有的视图函数。在这里举一个留言板应用“获取与创建留言”的视图函数作为例子。
+我们可以在 `<app>/views.py` 中定义一个应用所具有的视图函数. 在这里举一个留言板应用“获取与创建留言”的视图函数作为例子. 
 
 </div>
 
@@ -157,7 +157,7 @@ def user_board(req: HttpRequest, userName: str):
 
 ## 单元测试
 
-- 在 Django 中，测试工程师会将开发工程师所编写的路由与视图视为黑盒，通过 `django.test.TestCase` 类与 `django.test.Client` 类来模拟前端与开发工程师所撰写的后端交互，并通过其提供的断言函数来断言响应所应该具有的属性或是数据库应被如何修改。
+- 在 Django 中, 测试工程师会将开发工程师所编写的路由与视图视为黑盒, 通过 `django.test.TestCase` 类与 `django.test.Client` 类来模拟前端与开发工程师所撰写的后端交互, 并通过其提供的断言函数来断言响应所应该具有的属性或是数据库应被如何修改. 
 
 </div>
 
