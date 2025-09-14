@@ -32,17 +32,12 @@ hide: false
 ---
 
 ---
-src: ./pages/docker.md
+src: ./pages/fb.md
 hide: false
 ---
 
 ---
-src: ./pages/cicd.md
-hide: false
----
-
----
-src: ./pages/secoder.md
+src: ./pages/be.md
 hide: false
 ---
 

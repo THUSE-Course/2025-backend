@@ -253,3 +253,25 @@ gitGraph
     $ git branch -vv -d git_bramching 
     Deleted branch git_bramching (was 22e2a13).
     ```
+
+- merge: 合并分支
+    ```bash
+    $ git merge git_branching 
+    Updating 22e2a13..f964eec
+    Fast-forward
+     pages/git.md | 151 ++++++++++++++++++++++++++++++++++++++++++++-
+     slides.md    |  14 +++++++-------
+     2 files changed, 156 insertions(+), 9 deletions(-)
+    ```
+---
+
+# 还有很多东西...
+
+- Help: `git help`
+- 官方文档 (别看): https://git-scm.com/docs
+- 官方 Pro Book: https://git-scm.com/book/en/v2
+- 更详细的教程: https://docs.net9.org/basic/git/
+- 往年的科协暑培: https://summer25.net9.org/basic/linux%26git/Git/ ; https://summer24.net9.org/basic/linux_git/Git/
+- 练习 Git: https://learngitbranching.js.org/?locale=zh_CN
+
+---
