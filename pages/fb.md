@@ -196,3 +196,23 @@ B -->|7. 返回渲染好的页面| U
 - JWT 的验证: 服务器端通过 <span style="color: orange"> 验证 signature </span> 来确保 header 和 payload 未被篡改, 通过 <span style="color: orange"> 检查 payload 中的过期时间 </span> 来确保 JWT 未过期 (服务端也可以维护一个黑名单来支持 JWT 的注销)
 
 ---
+
+# 还有很多东西...
+
+<div style="font-size: 0.8em;">
+
+- Web 基础: https://docs.net9.org/basic/web/
+- API Design:
+  - Microsoft Docs: https://learn.microsoft.com/en-us/azure/architecture/best-practices/api-design
+  - Swagger: https://swagger.io/resources/articles/best-practices-in-api-design
+  - A good *(personally)* blog: https://www.seangoedecke.com/good-api-design/
+- Session Management:
+  - Comparison: https://blog.logto.io/token-based-authentication-vs-session-based-authentication
+  - Claim: http://cryto.net/~joepie91/blog/2016/06/13/stop-using-jwt-for-sessions/
+  - JWT Online: https://www.jwt.io/
+- Security:
+  - CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS
+  - CSRF: https://www.cloudflare.com/learning/security/threats/cross-site-request-forgery/ ; https://docs.djangoproject.com/en/5.2/ref/csrf/
+  - Detailed Guide: https://cheatsheetseries.owasp.org/index.html
+
+</div>
