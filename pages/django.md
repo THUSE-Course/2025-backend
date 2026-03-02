@@ -1,16 +1,18 @@
-# Django 简介 : 我们不是专业搞后端开发的...
+# Django 简介 : ~~我们不是~~我到确实是搞后端开发的...
 
 ##
 
-<div style="text-align: center; width: 75%">
+<div style="text-align: center; width: 60%">
 
 ![not backend dev](../assets/wearetrash.png)
 
 </div>
 
-如果你知道什么我们讲的东西不是最佳实践, 欢迎直接指正.
+~~如果你知道什么我们讲的东西不是最佳实践, 欢迎直接指正.~~
 
-另请参考 Django 官方文档 https://docs.djangoproject.com/en/5.2/
+Django 这玩意本来就不是最佳实践... 只是这玩意比较轮子, 适合新手上手罢了.
+
+请参考 Django 官方文档 https://docs.djangoproject.com/en/5.2/
 
 ---
 
@@ -83,13 +85,13 @@ urlpatterns = [
 ]
 ```
 
-这时剩余请求 <code><span style="color: cyan">restart</span></code> 匹配到第一条规则后, 交由 `board/views.py` 中的 `restart_board` 函数进行处理, 即后端会帮助我们调用这个函数, 并把请求体 (和请求有关的信息, 包括请求方法、请求数据等等) 作为参数传给这个函数. 
+这时剩余请求 <code><span style="color: cyan">restart</span></code> 匹配到第一条规则后, 交由 `board/views.py` 中的 `restart_board` 函数进行处理, 即后端会帮助我们调用这个函数, 并把请求体 (和请求有关的信息, 包括请求方法、请求数据等等) 作为参数传给这个函数.
 
 ---
 
 ## 模型
 
-- 在 Django 中, 模型用于数据库中数据表的结构设计以及数据表的元数据 (如主键、外键、索引等) 管理. 我们使用 Django 提供的 ORM 机制来进行对数据表和数据表列属性的管理. 具体来说, 我们只需要在 &lt;app>/models.py 中定义一个类继承 `django.db.models.Model` 即可. 
+- 在 Django 中, 模型用于数据库中数据表的结构设计以及数据表的元数据 (如主键、外键、索引等) 管理. 我们使用 Django 提供的 ORM 机制来进行对数据表和数据表列属性的管理. 具体来说, 我们只需要在 &lt;app>/models.py 中定义一个类继承 `django.db.models.Model` 即可.
 
     ```python
     from utils import utils_time
@@ -225,3 +227,41 @@ class BoardTests(TestCase):
 - 科协文档: https://docs.net9.org/backend/django/django/
 - Django 官方教程: https://docs.djangoproject.com/en/5.2/intro/tutorial01/
 - Django Admin 主题: https://www.djangoproject.com/weblog/2025/apr/18/admin-theme-roundup/
+
+---
+
+## Django 真的那么好用吗?
+
+Django 的设计理念是"大而全", 所有功能集成在一个框架中. 虽然对新手友好, 但是:
+
+- **非常笨重**: 包含 ORM、模板引擎、认证系统等大量组件, 难以拆分, 不方便拓展
+- **不能异步**: 原生不支持异步, 后来添加了 async 视图但是 Model 等依然是同步的, 到处创建线程
+- **魔法代码**: 有一堆神秘的隐形行为, 不方便调试和优化
+- **无法微服务化**: 过于庞大, 不适合拆分成微服务
+
+---
+
+## 业界主流是什么?
+
+### FastAPI
+
+- 轻量级, 只提供路由和视图功能, 其他功能需要自己选择第三方库
+- 原生支持异步, 性能更好
+- 通过依赖注入等更现代的设计提高可维护性
+
+### Flask
+
+- 比 Django 更精简, 但是比 FastAPI 更传统
+- 也有很丰富的第三方库生态, 但是不如 FastAPI 现代化
+
+---
+
+## 推荐大家考虑 FastAPI
+
+现在有了 LLM, 后端开发的门槛大大降低了. 小作业的 Django 的目的主要是给不太熟悉 Python 的同学上手; 对于 FastAPI, 我 **推荐** (真的) 使用 LLM Vibe Coding 完成小作业, 让大家熟悉一下如何使用 Vibe Coding 完成已有代码的迁移和新功能的实现.
+
+*(Ref: 我用了 20min 左右搞完了标程的 FastAPI 版本)*
+
+- CodeX 这个月免费用户也有额度, 可以用用
+- GitHub Copilot 可以用清华申请学生认证, 之后有额度
+- 系内 AI 平台 (https://lab.cs.tsinghua.edu.cn/ai-platform/) 有免费的 GLM 和 Qwen 模型可以使用

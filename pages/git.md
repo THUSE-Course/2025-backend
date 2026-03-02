@@ -80,7 +80,7 @@ flowchart LR
 
 - clone: 克隆一个远程仓库
     ```bash
-    $ git clone git@git.tsinghua.edu.cn:dyk22/2025-django-hw.git
+    $ git clone git@git.tsinghua.edu.cn:dyk22/2026-django-hw.git
     ```
 
 - status: 检查当前仓库的状态
@@ -102,6 +102,35 @@ flowchart LR
 ---
 
 # Git 的基本命令 (添加与提交)
+
+<div style="position: absolute; top: 5%; right: 10%; width: 20%;">
+
+```mermaid
+flowchart TD
+    subgraph Local["本地仓库 (Local Repository)"]
+        WC["工作区
+        (Working Directory)"]
+        SA["暂存区
+        (Staging Area / Index)"]
+        LC["本地仓库
+        (Local Commit / .git)"]
+    end
+
+    RR["远程仓库
+    (Remote Repository)"]
+
+    WC -->|"add"| SA
+    SA -->|"commit"| LC
+    LC -->|"push"| RR
+    RR -->|"fetch/pull"| LC
+    LC -->|"checkout / reset"| WC
+
+    classDef highlight fill:#ff6;
+    class WC,SA,LC highlight;
+    linkStyle 0,1 stroke:#f66,stroke-width:4px;
+```
+
+</div>
 
 - add: 将文件添加到暂存区
     ```bash
@@ -155,6 +184,35 @@ flowchart LR
 ---
 
 # Git 的基本命令 (远程与同步)
+
+<div style="position: absolute; top: 5%; right: 10%; width: 20%;">
+
+```mermaid
+flowchart TD
+    subgraph Local["本地仓库 (Local Repository)"]
+        WC["工作区
+        (Working Directory)"]
+        SA["暂存区
+        (Staging Area / Index)"]
+        LC["本地仓库
+        (Local Commit / .git)"]
+    end
+
+    RR["远程仓库
+    (Remote Repository)"]
+
+    WC -->|"add"| SA
+    SA -->|"commit"| LC
+    LC -->|"push"| RR
+    RR -->|"fetch/pull"| LC
+    LC -->|"checkout / reset"| WC
+
+    classDef highlight fill:#ff6;
+    class LC,RR highlight;
+    linkStyle 2,3 stroke:#f66,stroke-width:4px;
+```
+
+</div>
 
 - remote: 管理远程仓库
     ```bash

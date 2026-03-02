@@ -111,16 +111,16 @@ B -->|7. 返回渲染好的页面| U
 - 前后端分离的架构下, 前端和后端通过 API 进行通信. 因此 **API 的设计和约定非常重要**, 且 **应当提前设计 API**
 - (个人认为) 由于前端需要与用户交互, 因此 **API 的目的是满足前端的需求**, 即 **前端驱动 API 设计**
   - 打个比方, 如果前端需要一个用于获取用户简略信息的 API, 那么后端就应该提供一个 `/api/v1/user/summary` 的接口, 而不是让前端调用 `/api/v1/user/detail` 然后前端自己截断
-  - 如果前端需要一个用于获取用户列表的 API, 那么后端就应该提供一个 `/api/v1/users` 的接口, 而不是让前端调用 `/api/v1/user?id=1` 然后前端自己循环
-  - 如果前端需要一个长轮询是否有新消息的 API, 那么后端就应该提供一个 `/api/v1/messages/poll` 的接口, 而不是让前端自己频繁轮询 `/api/v1/messages`
+  - 如果前端需要一个用于获取用户列表的 API, 那么后端就应该提供一个 `/api/v1/users` 的接口, 而不是让前端调用 `/api/v1/user?id=1` 然后前端自己循环 (**不要笑!** 去年的大作业里面就有一个组, 在需要获取用户的 id + 名称的时候, 遍历几百个用户来获取信息...)
+  - 如果前端需要一个长轮询是否有新消息的 API, 那么后端就应该提供一个 `/api/v1/messages/poll` 的接口, 而不是让前端自己频繁轮询 `/api/v1/messages`, 或者使用 SSE / WebSocket 实现长连接
 
 ---
 
 # API 约定
 
 - API 约定了前后端预期按照何种格式交换数据, 需要何种前提 (如, 需要登录), 以及在何种情况下返回何种错误
-- 推荐用 https://apifox.com/ / https://www.postman.com/ 等工具来设计和管理 API; 当然 (我个人) 很欣赏直接通过 TypeScript / Python 的类型系统加上大量注释来定义 API.
-- 推荐使用 RESTful 风格的 API, 但也可以使用 GraphQL / gRPC 等其他风格
+- 推荐用 https://apifox.com/ / https://www.postman.com/ 等工具来设计和管理 API; 当然 (我个人) 很欣赏直接通过 TypeScript / Python 的类型系统 (比如 Pydantic) 加上大量注释来定义 API, 使得代码本身成为 Source of Truth.
+- 推荐使用 RESTful 风格的 API, 但也可以使用 GraphQL / gRPC 等其他风格. 不过 (我个人) 现在对 RESTful 已经有点去寐了, 现在还是觉得 GET + POST 然后把所有语义扔进 URL 比较正常.
 
 ---
 
@@ -188,7 +188,10 @@ B -->|7. 返回渲染好的页面| U
 
 # 小作业中的鉴权
 
-- 小作业中, 我们使用了 **JWT** 来进行鉴权 (但是祖传小作业里面的 JWT 实现是个错的... 别喷, 我马上修)
+- 小作业中, 我们使用了 **JWT** 来进行鉴权 (但是祖传小作业里面的 JWT 实现曾经是个错的...)
+
+### <span style="color: red;"> 我求你们了在遇到与安全有关的事情的时候多用用官方库和成熟实现吧别手搓一个自己觉得啊我真厉害的实现然后发现是一坨大的... </span>
+
 - JWT 的具体定义参考 RFC 7519
 - JWT 的结构: `header.payload.signature`. header 携带 <span style="color: orange;">明文的算法和类型信息</span>, payload 常常携带 <span style="color: orange;">明文的用户信息和过期时间</span>, signature 是对 header 和 payload 的签名 (密钥只有服务器知道, 因此 JWT 无法伪造)
   - 可能有人说, 这怎么是明文呢? 因为 JWT 使用 Base64Url 编码, 任何人都可以解码, 只不过不能篡改
@@ -214,5 +217,7 @@ B -->|7. 返回渲染好的页面| U
   - CORS: https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CORS
   - CSRF: https://www.cloudflare.com/learning/security/threats/cross-site-request-forgery/ ; https://docs.djangoproject.com/en/5.2/ref/csrf/
   - Detailed Guide: https://cheatsheetseries.owasp.org/index.html
+- Password Management:
+  - OWASP: https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 
 </div>

@@ -10,7 +10,7 @@ subtitle: 后端
 author: 计算机系《软件工程》助教团队
 info: |
   Backend of homework, Software Engineering, CST, Tsinghua Univ.
-  By Ajax <i@aajax.top>, 14/Sep/2025
+  By Ajax <i@aajax.top>, 2/Mar/2026
 # apply unocss classes to the current slide
 class: text-center
 # https://sli.dev/features/drawing
@@ -24,7 +24,7 @@ mdc: true
 
 # 计算机系《软件工程》课程
 
-## Git & 前后端分离 & Django
+## Git & 前后端分离 & 后端
 
 ---
 src: ./pages/git.md
